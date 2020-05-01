@@ -10,6 +10,14 @@ class HeatMapDTO(object):
 
 class HeatMap(object):
 
+    @property
+    def image_path(self) -> str:
+        return self.dto.image_path
+
+    @property
+    def name(self) -> str:
+        return self.dto.name
+
     def __init__(self, dto: HeatMapDTO) -> None:
         self.id = dto.id
         self.dto = dto

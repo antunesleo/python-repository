@@ -3,24 +3,13 @@ from sqlalchemy.orm import sessionmaker
 
 import exceptions
 from hm import HeatMapDTO, HeatMap
-from repository import ORMHeatMapRepository
+from repository import ORMHeatMapRepository, ORMCarRepository
 
-session = None
-
-
-def prepare_repository():
+if __name__ == '__main__':
     some_engine = create_engine('sqlite:///repo-adventures.db')
     SessionMaker = sessionmaker(bind=some_engine)
     session = SessionMaker()
-    return ORMHeatMapRepository(session)
-
-
-def commit():
-    session.commit()
-
-
-if __name__ == '__main__':
-    heat_map_repository = prepare_repository()
+    heat_map_repository = ORMHeatMapRepository(session)
 
     heat_map = heat_map_repository.get(1)
     assert heat_map.dto.name == 'An awesome map!'
@@ -41,4 +30,15 @@ if __name__ == '__main__':
     except exceptions.NotFound:
         pass
 
-    commit()
+    car_repository = ORMCarRepository(session)
+    car = car_repository.get(1)
+    assert car.color == 'red'
+    assert len(car.wheels) == 4
+    assert isinstance(car.wheels, list)
+    car.drop_wheel(4)
+    assert len(car.wheels) == 3
+    car_repository.save(car)
+    recent_car = car_repository.get(1)
+    assert len(recent_car.wheels) == 3
+
+    session.commit()
