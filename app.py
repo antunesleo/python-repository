@@ -2,6 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 import exceptions
+from car import WheelDTO
 from hm import HeatMapDTO, HeatMap
 from repository import ORMHeatMapRepository, ORMCarRepository
 
@@ -40,5 +41,9 @@ if __name__ == '__main__':
     car_repository.save(car)
     recent_car = car_repository.get(1)
     assert len(recent_car.wheels) == 3
+
+    wheel_dto = WheelDTO(5, 1, 'broken')
+    car.add_wheel(wheel_dto)
+    car_repository.save(car)
 
     session.commit()

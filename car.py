@@ -26,8 +26,11 @@ class Car(object):
     def wheels(self) -> list:
         return [self.Wheel(wheel_dto) for wheel_dto in self.dto.wheels]
 
-    def drop_wheel(self, wheel_id):
+    def drop_wheel(self, wheel_id: int):
         self.dto.wheels = [dto_wheel for dto_wheel in self.dto.wheels if dto_wheel.id != wheel_id]
+
+    def add_wheel(self, wheel: WheelDTO):
+        self.dto.wheels.append(wheel)
 
     def __init__(self, dto: CarDTO) -> None:
         self.id = dto.id
