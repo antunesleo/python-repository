@@ -1,0 +1,13 @@
+.env*
+*.xml
+.idea
+*.db
+*.pyc
+.pytest_cache
+.coverage
+htmlcov
+.coveralls.yml
+
+data
+
+
