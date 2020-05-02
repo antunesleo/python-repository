@@ -1,19 +1,20 @@
 from abc import ABC, abstractmethod
 
 
-class CarDTO(object):
-    def __init__(self, id, color, wheels):
-        self.id = id
-        self.color = color
-        self.wheels = wheels
+class CarDTO:
+    id: int
+    color: str
+    wheels: list
+    fuel: str
+    power: str
+    speed: str
+    avg_consume: str
 
 
-class WheelDTO(object):
-
-    def __init__(self, id, car_id, status):
-        self.id = id
-        self.car_id = car_id
-        self.status = status
+class WheelDTO:
+    id:  int
+    car_id: int
+    status: str
 
 
 class Car(object):
@@ -21,6 +22,10 @@ class Car(object):
     @property
     def color(self) -> str:
         return self.dto.color
+
+    @property
+    def data_sheet(self):
+        return self.DataSheet(self.dto)
 
     @property
     def wheels(self) -> list:
@@ -35,7 +40,27 @@ class Car(object):
     def __init__(self, dto: CarDTO) -> None:
         self.id = dto.id
         self.dto = dto
-        self.__wheels = None
+
+    class DataSheet(object):
+
+        @property
+        def fuel(self):
+            return self.dto.fuel
+
+        @property
+        def power(self):
+            return self.dto.power
+
+        @property
+        def speed(self):
+            return self.dto.speed
+
+        @property
+        def avg_consume(self):
+            return self.dto.avg_consume
+
+        def __init__(self, dto: CarDTO):
+            self.dto = dto
 
     class Wheel(object):
 

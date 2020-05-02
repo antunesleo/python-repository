@@ -1,8 +1,7 @@
-from sqlalchemy import Table, MetaData, Column, Integer, String, ForeignKey
-from sqlalchemy.orm import mapper, Session, relationship
+from sqlalchemy import Table, MetaData, Column, Integer, String
+from sqlalchemy.orm import mapper, Session
 
 import exceptions
-from domain.car import CarDTO, WheelDTO, CarRepository, Car
 from domain.hm import HeatMapDTO, HeatMapRepository, HeatMap
 
 metadata = MetaData()

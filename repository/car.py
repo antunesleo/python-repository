@@ -3,7 +3,6 @@ from sqlalchemy.orm import mapper, Session, relationship
 
 import exceptions
 from domain.car import CarDTO, WheelDTO, CarRepository, Car
-from domain.hm import HeatMapDTO, HeatMapRepository, HeatMap
 
 
 metadata = MetaData()
@@ -22,6 +21,10 @@ car_t = Table(
     metadata,
     Column('id', Integer, primary_key=True),
     Column('color', String(50)),
+    Column('fuel', String(50)),
+    Column('power', String(50)),
+    Column('speed', String(50)),
+    Column('avg_consume', String(50)),
 )
 
 mapper(WheelDTO, wheel_t)
@@ -32,6 +35,10 @@ CarMapper = mapper(
     properties={
         'id': car_t.c.id,
         'color': car_t.c.color,
+        'fuel': car_t.c.fuel,
+        'power': car_t.c.power,
+        'speed': car_t.c.speed,
+        'avg_consume': car_t.c.avg_consume,
         'wheels': relationship(WheelDTO, backref='car', order_by=wheel_t.c.id, cascade="all, delete, delete-orphan")
     }
 )

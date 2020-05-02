@@ -38,13 +38,17 @@ if __name__ == '__main__':
     assert car.color == 'red'
     assert len(car.wheels) == 4
     assert isinstance(car.wheels, list)
+    assert isinstance(car.data_sheet, car.DataSheet)
     car.drop_wheel(4)
     assert len(car.wheels) == 3
     car_repository.save(car)
     recent_car = car_repository.get(1)
     assert len(recent_car.wheels) == 3
 
-    wheel_dto = WheelDTO(5, 1, 'broken')
+    wheel_dto = WheelDTO()
+    wheel_dto.id = 5
+    wheel_dto.car_id = 1
+    wheel_dto.status = 'broken'
     car.add_wheel(wheel_dto)
     car_repository.save(car)
 
