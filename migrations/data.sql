@@ -3,7 +3,7 @@ BEGIN TRANSACTION;
 INSERT INTO heat_map VALUES(1,'some/path','An awesome map!');
 INSERT INTO heat_map VALUES(2,'some/path','Another awesome map!');
 INSERT INTO heat_map VALUES(3,'some/path','One more awesome map!');
-INSERT INTO car VALUES(1,'red');
+INSERT INTO car(id, color, fuel, power, speed, avg_consume, controlled_outside) VALUES (1, 'red', 'flex', '45423523', '54332', '11', 'I cant be overwritten by the system');
 INSERT INTO wheel VALUES(1,1,'new');
 INSERT INTO wheel VALUES(2,1,'new');
 INSERT INTO wheel VALUES(3,1,'old');
