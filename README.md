@@ -7,8 +7,9 @@ Implementation of repository in python with SQLAlchemy e sqlite.
 
 ### Setup
 
-    $ sqlite3 repo-adventures.db < dump.sql
     $ pip install -r requirements.txt
+    $ alembic upgrade head
+    $ sqlite3 repo-adventures.db < migrations/data.sql
 
 ### Run
 
