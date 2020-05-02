@@ -2,9 +2,11 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
 import exceptions
-from car import WheelDTO
-from hm import HeatMapDTO, HeatMap
-from repository import ORMHeatMapRepository, ORMCarRepository
+from domain.car import WheelDTO
+from domain.hm import HeatMapDTO, HeatMap
+from repository.car import ORMCarRepository
+from repository.hm import ORMHeatMapRepository
+
 
 if __name__ == '__main__':
     some_engine = create_engine('sqlite:///repo-adventures.db')
@@ -46,4 +48,5 @@ if __name__ == '__main__':
     car.add_wheel(wheel_dto)
     car_repository.save(car)
 
-    session.commit()
+    # Uncomment if you want to persist it
+    # session.commit()

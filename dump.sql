@@ -1,0 +1,14 @@
+PRAGMA foreign_keys=OFF;
+BEGIN TRANSACTION;
+CREATE TABLE heat_map(id INT PRIMARY KEY NOT NULL, image_path TEXT NOT NULL, name TEXT NOT NULL  );
+INSERT INTO heat_map VALUES(1,'some/path','An awesome map!');
+INSERT INTO heat_map VALUES(2,'some/path','Another awesome map!');
+INSERT INTO heat_map VALUES(3,'some/path','One more awesome map!');
+CREATE TABLE car (id INTEGER PRIMARY KEY, color TEXT);
+INSERT INTO car VALUES(1,'red');
+CREATE TABLE wheel (id INTEGER PRIMARY KEY, car_id INTEGER,  status TEXT, FOREIGN KEY(car_id) REFERENCES car(id));
+INSERT INTO wheel VALUES(1,1,'new');
+INSERT INTO wheel VALUES(2,1,'new');
+INSERT INTO wheel VALUES(3,1,'old');
+INSERT INTO wheel VALUES(4,1,'old');
+COMMIT;
