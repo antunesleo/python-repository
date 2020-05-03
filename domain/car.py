@@ -80,9 +80,17 @@ class CarRepository(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def save(self, car: Car) -> None:
+    def get_all(self, id) -> list:
         raise NotImplementedError
 
     @abstractmethod
-    def delete(self, car: Car):
+    def add(self, car: Car) -> None:
+        raise NotImplementedError
+
+    @abstractmethod
+    def update(self, car: Car) -> None:
+        raise NotImplementedError
+
+    @abstractmethod
+    def remove(self, car: Car) -> None:
         raise NotImplementedError

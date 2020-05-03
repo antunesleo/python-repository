@@ -38,10 +38,17 @@ class ORMHeatMapRepository(HeatMapRepository):
             raise exceptions.NotFound(heat_map_id)
         return HeatMap(dto)
 
-    def save(self, heat_map: HeatMap) -> None:
+    def get_all(self, id) -> list:
+        return [HeatMap(dto) for dto in self._query.filter()]
+
+    def add(self, heat_map: HeatMap) -> None:
         self._session.add(heat_map.dto)
         self._session.flush()
 
-    def delete(self, heat_map: HeatMap) -> None:
+    def update(self, heat_map: HeatMap) -> None:
+        self._session.add(heat_map.dto)
+        self._session.flush()
+
+    def remove(self, heat_map: HeatMap) -> None:
         self._session.delete(heat_map.dto)
         self._session.flush()

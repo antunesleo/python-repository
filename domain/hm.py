@@ -30,9 +30,17 @@ class HeatMapRepository(ABC):
         raise NotImplementedError
 
     @abstractmethod
-    def save(self, heat_map: HeatMap) -> None:
+    def get_all(self, id) -> list:
         raise NotImplementedError
 
     @abstractmethod
-    def delete(self, heat_map: HeatMap):
+    def add(self, heat_map: HeatMap) -> None:
+        raise NotImplementedError
+
+    @abstractmethod
+    def update(self, heat_map: HeatMap) -> None:
+        raise NotImplementedError
+
+    @abstractmethod
+    def remove(self, heat_map: HeatMap) -> None:
         raise NotImplementedError

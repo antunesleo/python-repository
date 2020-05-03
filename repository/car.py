@@ -56,10 +56,17 @@ class ORMCarRepository(CarRepository):
             raise exceptions.NotFound(car_id)
         return Car(dto)
 
-    def save(self, car: Car) -> None:
+    def get_all(self, car_id) -> list:
+        return [Car(dto) for dto in self._query.filter()]
+
+    def add(self, car: Car) -> None:
         self._session.add(car.dto)
         self._session.flush()
 
-    def delete(self, car: Car) -> None:
+    def update(self, car: Car) -> None:
+        self._session.add(car.dto)
+        self._session.flush()
+
+    def remove(self, car: Car) -> None:
         self._session.delete(car.dto)
         self._session.flush()
